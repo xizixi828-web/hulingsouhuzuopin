@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>狐厂"元老"的日常 - 完整漫画</title>
+    <meta name="description" content="陪中国互联网长大，也陪你好好生活 - 搜狐品牌漫画">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .comic-content {
+            padding: 30px;
+        }
+
+        .page {
+            margin-bottom: 40px;
+            border: 3px solid #e0e0e0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .page:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .page-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.4em;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .page-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            padding: 15px;
+            background: #f8f9fa;
+        }
+
+        .panel {
+            flex: 1 1 33.33%;
+            min-width: 320px;
+            height: auto;
+            border: 3px solid #e0e0e0;
+            border-radius: 15px;
+            overflow: hidden;
+            background: white;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .panel:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            border-color: #ff6b6b;
+        }
+
+        .panel img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .panel:hover img {
+            transform: scale(1.1);
+        }
+
+        .panel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+            color: white;
+            padding: 35px 15px 15px;
+            font-size: 0.9em;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .panel:hover .panel-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .panel-number {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.95em;
+            box-shadow: 0 3px 10px rgba(255, 107, 107, 0.4);
+            z-index: 10;
+        }
+
+        .download-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 40px;
+            text-align: center;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+            color: white;
+            padding: 18px 50px;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+            transition: all 0.3s ease;
+            margin: 10px 15px;
+            border: 3px solid transparent;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(255, 107, 107, 0.6);
+            background: linear-gradient(135deg, #ff5252 0%, #ff7043 100%);
+        }
+
+        .download-btn.secondary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .download-btn.secondary:hover {
+            background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.6);
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            font-size: 0.95em;
+        }
+
+        .footer p {
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .panel {
+                flex: 1 1 100%;
+                min-width: 100%;
+            }
+
+            .download-btn {
+                padding: 15px 35px;
+                font-size: 1.1em;
+                margin: 8px;
+            }
+        }
+
+        /* 添加滚动动画 */
+        .page {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 0.8s ease forwards;
+        }
+
+        .page:nth-child(1) { animation-delay: 0.2s; }
+        .page:nth-child(2) { animation-delay: 0.4s; }
+        .page:nth-child(3) { animation-delay: 0.6s; }
+        .page:nth-child(4) { animation-delay: 0.8s; }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🦊 狐厂"元老"的日常</h1>
+            <p>陪中国互联网长大，也陪你好好生活</p>
+        </div>
+
+        <div class="comic-content">
+            <!-- 第1页：开场反差 -->
+            <div class="page">
+                <div class="page-title">第1页：开场反差 —— 打破刻板印象</div>
+                <div class="page-content">
+                    <div class="panel">
+                        <div class="panel-number">1</div>
+                        <img src="https://www.coze.cn/s/jVkvGVDRC_I/" alt="分镜1-阿友质疑">
+                        <div class="panel-caption">"你现在居然在搜狐上班？我以为它早就'凉'了..."</div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-number">2</div>
+                        <img src="https://www.coze.cn/s/juLtxKjb2RM/" alt="分镜2-狐小搜回应">
+                        <div class="panel-caption">"年轻人，别急着下结论～我可是见证中国互联网从拨号到5G的'活化石'哦"</div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-number">3</div>
+                        <img src="https://www.coze.cn/s/kAB9-jljA9Q/" alt="分镜3-游戏板块">
+                        <div class="panel-caption">先看我家"印钞机"——畅游《天龙八部》！运营超15年还能打</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第2页：业务揭秘 -->
+            <div class="page">
+                <div class="page-title">第2页：业务揭秘 —— 三大板块趣味科普</div>
+                <div class="page-content">
+                    <div class="panel">
+                        <div class="panel-number">4</div>
+                        <img src="https://www.coze.cn/s/kVRv6O10SNU/" alt="分镜4-游戏毛利率">
+                        <div class="panel-caption">"对呀～我们不追爆款快餐，靠精细化运营把毛利率做到86%，稳得很！"</div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-number">5</div>
+                        <img src="https://www.coze.cn/s/kmwmzkFBw1U/" alt="分镜5-搜狐视频">
+                        <div class="panel-caption">"再看我的'内容自留地'——搜狐视频！不跟别人抢流量，只做有质感的内容"</div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-number">6</div>
+                        <img src="https://www.coze.cn/s/k5_P2qaHsvo/" alt="分镜6-物理课">
+                        <div class="panel-caption">"还有全网独一份的《张朝阳的物理课》，学霸老板亲自开课，这格调谁能比？"</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第3页：结尾升华 -->
+            <div class="page">
+                <div class="page-title">第3页：结尾升华 —— 让朋友"羡慕"的狐厂日常</div>
+                <div class="page-content">
+                    <div class="panel">
+                        <div class="panel-number">7</div>
+                        <img src="https://www.coze.cn/s/lNNJujYGs6M/" alt="分镜7-搜狐门户">
+                        <div class="panel-caption">"最后是我的'初心'——搜狐门户。从最早的新闻资讯到现在垂直领域深耕，体育、财经、娱乐样样能打"</div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-number">8</div>
+                        <img src="https://www.coze.cn/s/lfcb6ceInVg/" alt="分镜8-企业精神">
+                        <div class="panel-caption">"毕竟，慢工出细活嘛～不随波逐流，才走得更远"</div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-number">9</div>
+                        <img src="https://www.coze.cn/s/do2MjvHwya4/" alt="分镜9-狐厂办公环境">
+                        <div class="panel-caption">狐厂的温暖日常：阳光洒在办公室，撸猫、下午茶、轻松自在的工作氛围</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第4页：品牌升华 -->
+            <div class="page">
+                <div class="page-title">第4页：品牌升华 —— 搜狐与你同行</div>
+                <div class="page-content">
+                    <div class="panel">
+                        <div class="panel-number">10</div>
+                        <img src="https://www.coze.cn/s/l2zCMDMG1qE/" alt="分镜10-搜狐大厦">
+                        <div class="panel-caption">搜狐——陪中国互联网长大，也陪你好好生活</div>
+                    </div>
+                    <div class="panel" style="background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%); display: flex; align-items: center; justify-content: center; flex-direction: column; color: white; padding: 25px; min-height: 350px;">
+                        <div style="font-size: 4em; margin-bottom: 15px; animation: bounce 2s infinite;">🦊</div>
+                        <h2 style="margin-bottom: 15px; font-size: 1.8em;">感谢阅读</h2>
+                        <p style="font-size: 1.2em; text-align: center; line-height: 1.8;">搜狐，一个靠谱又有温度的公司<br>期待与你相遇！</p>
+                    </div>
+                    <div class="panel" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; flex-direction: column; color: white; padding: 25px; min-height: 350px;">
+                        <div style="font-size: 4em; margin-bottom: 15px; animation: pulse 2s infinite;">🎮</div>
+                        <h2 style="margin-bottom: 15px; font-size: 1.8em;">业务矩阵</h2>
+                        <ul style="text-align: left; font-size: 1em; line-height: 2.2; width: 80%;">
+                            <li style="margin-bottom: 10px;">🎮 游戏：《天龙八部》等经典IP</li>
+                            <li style="margin-bottom: 10px;">📺 视频：自制剧+知识直播</li>
+                            <li>📰 门户：新闻资讯全覆盖</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <a href="狐厂元老的日常_完整漫画.pdf" class="download-btn" download>
+                📥 下载完整PDF漫画
+            </a>
+            <a href="#" class="download-btn secondary" onclick="alert('💡 提示：请将此HTML文件上传到网站服务器或使用在线托管服务生成分享链接！'); return false;">
+                🔗 如何分享给朋友
+            </a>
+        </div>
+
+        <div class="footer">
+            <p>© 2026 搜狐公司 | 搜狐——陪中国互联网长大，也陪你好好生活</p>
+        </div>
+    </div>
+
+    <script>
+        // 添加滚动动画
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.page').forEach(page => {
+            observer.observe(page);
+        });
+
+        // 添加点击分享功能
+        document.querySelector('.download-btn.secondary').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('📢 分享方法：\n\n1. 将此HTML文件上传到网站服务器\n2. 使用GitHub Pages、Netlify等免费托管\n3. 生成链接后即可分享给朋友\n\n或者直接发送PDF文件给朋友！💖');
+        });
+
+        // 添加动画效果
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes bounce {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
+            }
+            @keyframes pulse {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.1); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
